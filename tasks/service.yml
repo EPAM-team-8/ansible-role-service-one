@@ -1,0 +1,29 @@
+---
+
+- name: 'Copy modifyed config' 
+  template:
+    src: 'app.yml.j2'
+    dest: '/opt/service-one/src/main/resources/application.yml'
+
+- name: 'Copy modifyed config' 
+  template:
+    src: 'ReactiveMongoConfiguration.java.j2'
+    dest: '/opt/service-one/src/main/java/com/mudigal/one/config/ReactiveMongoConfiguration.java'
+
+- name: 'Maven clean package'
+  command: 'sudo mvn -f /opt/service-one/pom.xml clean package'
+
+- name: 'Copy service'
+  template:
+    src: 'service-one.service.j2'
+    dest: '/etc/systemd/system/service-one.service'
+    owner: root
+    group: root
+
+- name: 'Enable/Start Service'
+  systemd:
+    name: 'service-one'
+    daemon_reload: yes
+    enabled: yes
+    state: 'started'
+

@@ -1,0 +1,8 @@
+user_name: epam
+user_pass: anypass
+db_host: 172.31.26.30
+consul_host: 172.31.4.247 
+service_host: 172.31.1.111
+rabbit_host: 172.31.27.70
+rabit_user: epam 
+rabbit_pass: anypass

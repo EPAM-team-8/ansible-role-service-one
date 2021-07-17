@@ -1,0 +1,12 @@
+---
+
+- name: 'Install git'
+  apt:
+    name: 'git'
+    state: 'present'
+
+- name: 'Git clone'
+  git:
+    repo: 'https://github.com/Styop1995/Service-one.git'
+    dest: /opt/service-one
+    force: yes

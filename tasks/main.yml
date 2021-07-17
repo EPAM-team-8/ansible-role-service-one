@@ -1,0 +1,13 @@
+---
+
+# - name: 'Install MongoDB'
+#   include_tasks: mongodb.yml
+
+- name: 'Install Java & Maven'
+  include_tasks: java-maven.yml
+
+- name: 'Install Git & Clone'
+  include_tasks: git.yml
+
+- name: 'Create service'
+  include_tasks: service.yml
