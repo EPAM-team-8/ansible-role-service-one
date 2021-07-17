@@ -1,0 +1,56 @@
+# GLOBAL CONFIGURATION
+
+spring:
+  application.name: service-one
+  jackson.serializationindent_output: true
+  main.allow-bean-definition-overriding: true
+
+info:
+  component: Service-One
+  artifact: service-one
+  version: 5.0.0
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+
+management:
+  contextPath: /actuator
+  security.enabled: false
+
+server:
+  contextPath: /
+  port: 8082
+
+---
+#DEFAULT CONFIGURATION
+spring:
+  profiles: default
+  autoconfigure.exclude:
+    - org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration
+  cloud:
+    consul:
+      host: {{ consul_host }}
+      port: 8500
+      discovery:
+        hostName: {{ service_host }}
+        instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+        healthCheckPath: ${management.contextPath}/health
+        healthCheckInterval: 15s
+  data.mongodb.uri: 'mongodb://{{ db_host }}/:27017'
+  rabbitmq:
+    host: {{ rabbit_host }}
+    port: 5672
+    username: {{ rabit_user }}
+    password: {{ rabbit_pass }}
+    virtualHost: /
+
+logging:
+ level:
+    org.springframework.web: DEBUG
+    com.mudigal.one: DEBUG
+    org.hibernate: DEBUG
