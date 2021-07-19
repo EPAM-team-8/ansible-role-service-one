@@ -21,7 +21,7 @@ public class ReactiveMongoConfiguration
 
   @Override
   public MongoClient reactiveMongoClient() {
-    return MongoClients.create("mongodb://{{ user_name }}:{{ user_pass }}@{{ db_host }}:27017");
+    return MongoClients.create("mongodb://{{ user_name }}:{{ user_pass }}@{{ db_host }}:27017/admin");
   }
 
   @Override
