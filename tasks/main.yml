@@ -1,8 +1,5 @@
 ---
 
-# - name: 'Install MongoDB'
-#   include_tasks: mongodb.yml
-
 - name: 'Install Java & Maven'
   include_tasks: java-maven.yml
 
